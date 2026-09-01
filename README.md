@@ -11,6 +11,43 @@
 - mysql-connector-j 8.0.33（兼容 MySQL 8.4）
 - Jackson（JSON 序列化）
 
+## 数据表（13 张）
+
+- `user`：会员
+- `book_category`：图书分类
+- `book`：图书
+- `cart_item`：购物车条目
+- `orders`：订单
+- `order_item`：订单明细
+- `point_record`：积分记录
+- `admin`：管理员
+- `receiver_address`：会员收货地址
+- `book_comment`：图书评论
+- `book_favorite`：图书收藏
+- `coupon`：优惠券
+- `user_coupon`：会员已领取优惠券
+
+## 功能点（18 项）
+
+1. 会员注册
+2. 会员登录/退出
+3. 个人资料维护
+4. 收货地址管理
+5. 图书分类管理
+6. 图书信息管理
+7. 图书检索与分页
+8. 图书收藏
+9. 图书评论
+10. 购物车管理
+11. 优惠券领取与使用
+12. 提交订单
+13. 模拟支付
+14. 取消订单
+15. 订单查询
+16. 订单发货与完成
+17. 积分累计与查询
+18. 管理员后台管理
+
 ## 三层架构
 
 | 层次 | 作用 | 位置 |
@@ -70,7 +107,7 @@ mvn -f pom.xml -Dmaven.repo.local=%TEMP%\m2repo -Dmaven.compiler.fork=true -Dmav
 ## Git 协作约定
 
 - 主分支：`main`
-- 开发分支：按模块建立 `feature/book`、`feature/cart`、`feature/order`、`feature/member`
+- 开发分支：按模块建立 `feature/book`、`feature/cart`、`feature/order`、`feature/member`、`feature/address`、`feature/favorite`、`feature/comment`、`feature/coupon`
 - 每次修改前我会先说明要改哪些文件，获得你同意后再执行；新建项目文件除外
 
 ## 已预留的接口
@@ -79,6 +116,10 @@ mvn -f pom.xml -Dmaven.repo.local=%TEMP%\m2repo -Dmaven.compiler.fork=true -Dmav
 - `GET/POST /api/cart` 购物车查询与操作
 - `GET/POST /api/orders` 订单查询与操作
 - `GET/POST /api/member` 会员注册、登录、资料与积分
+- `GET/POST /api/address` 收货地址管理
+- `GET/POST /api/favorites` 图书收藏
+- `GET/POST /api/comments` 图书评论
+- `GET/POST /api/coupons` 优惠券领取与使用
 - `GET/POST /api/admin` 管理员后台接口占位
 
 当前所有接口返回 `Result` 结构：`{"code":200,"message":"...","data":null}`，业务逻辑待后续实现。
