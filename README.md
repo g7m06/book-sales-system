@@ -4,10 +4,11 @@
 
 ## 技术栈
 
-- JDK 8
+- JDK 17
 - Maven
 - Servlet 4.0 + JSP
-- MySQL 8.0
+- MySQL 8.4.11（本机 MySQL 版本）
+- mysql-connector-j 8.0.33（兼容 MySQL 8.4）
 - Jackson（JSON 序列化）
 
 ## 三层架构
@@ -51,16 +52,17 @@ book-sales-system/
 
 1. `File -> Open`，选择本目录下的 `pom.xml`，IDEA 会按 Maven 项目导入。
 2. 等待依赖下载完成；如未自动刷新，点击右侧 Maven 面板的刷新按钮。
-3. 先执行 `sql/schema.sql` 创建数据库和表，并把 `src/main/resources/db.properties.example` 复制为 `db.properties`，修改为本机数据库账号密码。
-4. 配置 Tomcat：`Run -> Edit Configurations -> + -> Tomcat Server -> Local`，在 `Deployment` 中添加 `book-sales-system:war exploded`。
-5. 启动 Tomcat 后访问 `http://localhost:8080/book-sales-system/`，接口返回占位 JSON。
+3. 在 `File -> Project Structure -> Project` 中确认 SDK 和 Language level 均为 17。
+4. 先执行 `sql/schema.sql` 创建数据库和表，并把 `src/main/resources/db.properties.example` 复制为 `db.properties`，修改为本机数据库账号密码。
+5. 配置 Tomcat：`Run -> Edit Configurations -> + -> Tomcat Server -> Local`，在 `Deployment` 中添加 `book-sales-system:war exploded`。
+6. 启动 Tomcat 后访问 `http://localhost:8080/book-sales-system/`，接口返回占位 JSON。
 
 ## 本机 Maven 校验
 
 当前环境默认 Maven 仓库在 Z 盘且无写权限，可使用项目外临时仓库编译：
 
 ```bash
-mvn -f pom.xml -Dmaven.repo.local=%TEMP%\m2repo -Dmaven.compiler.fork=true -Dmaven.compiler.executable=C:\Program Files\Common Files\Oracle\Java\javapath\javac.exe compile
+mvn -f pom.xml -Dmaven.repo.local=%TEMP%\m2repo -Dmaven.compiler.fork=true -Dmaven.compiler.executable=你的JDK17目录\bin\javac.exe compile
 ```
 
 在 IDEA 内不需要额外参数，直接使用 IDEA 自带的 Maven 和编译器即可。
